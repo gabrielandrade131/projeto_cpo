@@ -1,0 +1,60 @@
+body {
+    margin: 0;
+    padding: 0;
+    height: 100vh; 
+    background-image: url('/static/images/sua-imagem.jpg');
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: url('/static/img/ambipar.png');
+    background-size: cover;
+    background-position: center;
+}
+
+.login-container {
+    background-color: #D4FF00;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    width: 90%;
+    max-width: 400px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+form p {
+    margin-bottom: 15px;
+}
+
+input[type="text"],
+input[type="password"] {
+    width: 100%;
+    padding: 12px;
+    margin: 0;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+}
+
+button {
+    width: 100%;
+    background-color: #007bff;
+    color: white;
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #0056b3;
+}

@@ -37,6 +37,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'cpo.apps.CpoConfig',
+    'django_bootstrap5',
 ]
 
 MIDDLEWARE = [
@@ -120,3 +122,7 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+LOGIN_URL = 'login' # nome da URL de login
+LOGIN_REDIRECT_URL = 'dashboard' # para onde vai depois do login
+LOGOUT_REDIRECT_URL = 'login' # para onde vai depois do logout
