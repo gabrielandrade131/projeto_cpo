@@ -1,0 +1,759 @@
+:root {
+    --primary-color: #D4FF00;
+    --secondary-color: #333;
+    --background-color: #f2f2f2;
+    --font-family: 'Tahoma', sans-serif;
+}
+
+body, html {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    font-family: var(--font-family);
+    background-color: var(--background-color);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+.container {
+    max-width: 100%;
+    max-height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    margin-top: 20px;
+    flex-grow: 1; /* Permite que o container cresça para ocupar o espaço disponível */
+}
+
+header {
+    background-color: #fff;
+    padding: 10px 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    width: 100%;
+}
+
+header img {
+    height: 60px;
+    object-fit: contain;
+}
+
+.menu-icon {
+    font-size: 24px;
+    cursor: pointer;
+    display: block;
+}
+
+.sidebar {
+    background-color: #333;
+    color: #fff;
+    width: 200px;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: -200px;
+    padding-top: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: left 0.3s;
+}
+
+.sidebar.active {
+    left: 0;
+}
+
+.sidebar a {
+    color: #fff;
+    padding: 10px 15px;
+    text-decoration: none;
+    text-align: center;
+    width: 100%;
+    display: block;
+}
+
+.sidebar a:hover {
+    background-color: #575757;
+}
+
+main {
+    flex-grow: 1;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%; /* Garante que o main ocupe toda a largura */
+}
+
+.formulario {
+    background-color: var(--primary-color);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 600px;
+    margin-bottom: 20px;
+}
+
+.formulario h2 {
+    margin-bottom: 20px;
+    color: var(--secondary-color);
+}
+
+.dados-pessoais-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.campo {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-bottom: 15px;
+}
+
+.campo label {
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: var(--secondary-color);
+}
+
+.campo input, .campo select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+.campo input[type="checkbox"] {
+    margin-right: 10px;
+}
+
+.campo input[type="text"],
+.campo input[type="number"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+    margin-top: 5px;
+}
+
+.campo input[type="text"]:disabled,
+.campo input[type="number"]:disabled {
+    background-color: #e9e9e9;
+    cursor: not-allowed;
+}
+
+button {
+    background-color: var(--primary-color);
+    border: none;
+    padding: 10px 15px;
+    cursor: pointer;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: opacity 0.3s;
+}
+
+button:hover {
+    opacity: 0.8;
+}
+
+.botoes-acao {
+    display: flex;
+    gap: 10px; /* Espaçamento entre os botões */
+    justify-content: center; /* Centraliza os botões */
+    margin-top: 20px; /* Adiciona espaço acima dos botões */
+}
+
+/* Folha de Ponto */
+.folha-de-ponto {
+    display: block;
+    margin: 0;
+    padding: 0px;
+    border: none;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 23cm; /* Aumenta a largura da folha */
+    height: 32cm; /* Aumenta a altura da folha */
+    overflow: hidden;
+    position: relative;
+    box-sizing: border-box; /* Garante que o padding e a borda sejam incluídos na largura e altura */
+    margin-bottom: 10px; /* Aumenta a margem inferior para evitar corte */
+    overflow-x: auto; /* Permite rolagem horizontal */
+}
+
+.header-folha {
+    max-width: 1080px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 10px 20px;
+    box-sizing: border-box;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.header-folha h2 {
+    text-align: center;
+    width: 100%;
+    padding: 0;
+    font-size: 24px;
+}
+
+.logo-folha {
+    max-height: 100px;  /* Ajuste o tamanho conforme necessário */
+    width: auto;
+    display: block;  /* Garante que a imagem será exibida */
+    justify-content: flex-start;
+}
+
+.folha-de-ponto table {
+    width: 100%;
+    border-collapse: collapse;
+    table-layout: fixed;
+    min-width: 600px; /* Define uma largura mínima para a tabela */
+}
+
+/* Define a largura fixa para as colunas da tabela */
+.folha-de-ponto th, .folha-de-ponto td {
+    width: 16.66%; /* Define a largura para que todas as colunas tenham a mesma largura */
+    padding: 2px; /* Reduzido para economizar espaço */
+    border: 1px solid black;
+    word-wrap: break-word;
+    text-align: center;
+    font-size: 10px; /* Aumentado para melhor visualização */
+}
+
+/* Define a largura fixa para os campos de entrada de tempo */
+.folha-de-ponto input[type="time"], .folha-de-ponto input[type="text"] {
+    width: 100%; /* Garante que os campos de entrada ocupem toda a largura da célula */
+    box-sizing: border-box; /* Inclui o padding e a borda na largura total */
+    padding: 2px; /* Ajusta o padding para economizar espaço */
+    font-size: 10px; /* Ajusta o tamanho da fonte para corresponder ao tamanho da célula */
+}
+
+/* Ajusta a largura das colunas específicas */
+.folha-de-ponto th.entrada, 
+.folha-de-ponto th.inicio-intervalo, 
+.folha-de-ponto th.fim-intervalo, 
+.folha-de-ponto th.saida, 
+.folha-de-ponto th.carga-horaria, 
+.folha-de-ponto th.observacao, 
+.folha-de-ponto td.entrada, 
+.folha-de-ponto td.inicio-intervalo, 
+.folha-de-ponto td.fim-intervalo, 
+.folha-de-ponto td.saida, 
+.folha-de-ponto td.carga-horaria, 
+.folha-de-ponto td.observacao {
+    width: 16.66%; /* Define a largura para que todas as colunas tenham a mesma largura */
+}
+
+.folha-de-ponto th.carga-horaria input[type="text"] {
+    width: 100%; /* Garante que o campo de entrada ocupe toda a largura da célula */
+    box-sizing: border-box; /* Inclui o padding e a borda na largura total */
+    padding: 2px; /* Ajusta o padding para economizar espaço */
+    font-size: 10px; /* Ajusta o tamanho da fonte para corresponder ao tamanho da célula */
+}
+
+/* Ajusta a largura da coluna de observação */
+.folha-de-ponto th.observacao, 
+.folha-de-ponto td.observacao {
+    width: 16.66%; /* Define a largura para a coluna de observação */
+}
+.folha-de-ponto th.observacao input[type="text"] {
+    width: 100%; /* Garante que o campo de entrada ocupe toda a largura da célula */
+    box-sizing: border-box; /* Inclui o padding e a borda na largura total */
+    padding: 2px; /* Ajusta o padding para economizar espaço */
+    font-size: 10px; /* Ajusta o tamanho da fonte para corresponder ao tamanho da célula */
+}
+.folha-de-ponto th.observacao input[type="text"]:disabled {
+    background-color: #e9e9e9;
+    cursor: not-allowed;
+}
+
+.folha-de-ponto td.observacao input[type="text"] {
+    text-transform: uppercase; /* Transforma o texto em maiúsculas */
+    text-align: center; /* Centraliza o texto */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 400%; /* Garante que o input ocupe toda a altura da célula */
+    line-height: 1.2; /* Ajusta a altura da linha para centralizar verticalmente */
+    font-size: 14px;
+    font-weight: lighter;
+    border: none;
+    font-family: 'Segoe UI', Tahoma, Verdana, sans-serif;
+    padding: 0;
+    margin: 0;
+}
+.dados-pessoais {
+    margin-bottom: 20px;
+}
+/* Assinaturas */
+.assinaturas {
+    display: flex;
+    justify-content: center; /* Centraliza a assinatura do colaborador */
+    margin-top: 80px; /* Aumente este valor para mover a assinatura mais para baixo */
+}
+
+/* Linha de assinatura do colaborador */
+.campo-assinatura {
+    width: 50%; /* Ajusta a largura para centralizar */
+    text-align: center; /* Centraliza a linha */
+    margin-top: 5%; /* Reduz o espaço acima da linha */
+    margin-bottom: 10px; /* Reduz o espaço abaixo da linha */
+    position: relative;
+}
+
+.linha-assinatura {
+    width: 100%;
+    border-top: 1px solid #000;
+    margin-top: 5px; /* Reduz o espaço acima da linha */
+    margin-bottom: 5px; /* Reduz o espaço abaixo da linha */
+}
+
+.campo-assinatura strong {
+    display: block;
+    margin-top: 5px; /* Reduz o espaço acima do texto */
+    text-align: center; /* Centraliza o texto */
+}
+
+/* Estilos para o seletor de tempo */
+input[type="time"] {
+    width: 100px;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+    background-color: #f9f9f9;
+    color: #333;
+    text-align: center;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+
+input[type="time"]::-webkit-calendar-picker-indicator {
+    background: url('data:image/svg+xml;charset=US-ASCII,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-clock" viewBox="0 0 16 16"><path d="M8 3.5a.5.5 0 0 1 .5.5v4.25l3.5 2.1a.5.5 0 0 1-.5.85l-4-2.4A.5.5 0 0 1 7.5 8V4a.5.5 0 0 1 .5-.5z"/><path d="M8 1a7 7 0 1 0 0 14A7 7 0 0 0 8 1zM8 0a8 8 0 1 1 0 16A8 8 0 0 1 8 0z"/></svg>') no-repeat;
+    background-size: 16px 16px;
+    background-position: center;
+    cursor: pointer;
+}
+
+/* Tela de carregamento */
+.loading-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7); /* Fundo escuro com transparência */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    flex-direction: column;
+    gap: 20px; /* Espaço entre a animação e o texto */
+}
+
+.loading-dots {
+    display: flex;
+    gap: 5px;
+}
+
+.loading-dots span {
+    width: 10px;
+    height: 10px;
+    background-color: #fff;
+    border-radius: 50%;
+    animation: bounce 1.5s infinite ease-in-out;
+}
+
+.loading-dots span:nth-child(1) {
+    animation-delay: 0s;
+}
+
+.loading-dots span:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+.loading-dots span:nth-child(3) {
+    animation-delay: 0.4s;
+}
+
+@keyframes bounce {
+    0%, 80%, 100% {
+        transform: scale(0);
+    }
+    40% {
+        transform: scale(1);
+    }
+}
+
+.loading-overlay p {
+    color: #fff;
+    font-size: 1.2em;
+    font-family: 'Arial', sans-serif;
+    text-align: center;
+    margin: 0;
+    opacity: 0.8; /* Texto levemente translúcido */
+}
+
+.loading-overlay p, .saving-message p {
+    color: #fff;
+    font-size: 1.5em;
+    margin-top: 20px;
+}
+
+.success-message, .saving-message {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: #008000; /* Verde */
+    color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    z-index: 1001;
+    font-size: 1.5em;
+    text-align: center;
+}
+
+.success-message {
+    display: none; /* Inicialmente escondido */
+}
+
+.success-message.active {
+    display: block; /* Mostra a mensagem quando ativa */
+}
+
+/* Estilos para os campos de assinatura */
+.assinaturas{
+    display: flex;
+    justify-content: center;
+    margin-top: 35px;
+}
+
+/* Estilos personalizados para os campos de folga e férias */
+.campo-checkbox {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.campo-checkbox label {
+    margin-right: 10px;
+    font-weight: bold;
+    color: var(--secondary-color);
+}
+
+.campo-checkbox input[type="checkbox"] {
+    margin-right: 10px;
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+}
+
+.campo-checkbox input[type="text"],
+.campo-checkbox input[type="number"] {
+    width: 100px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+    margin-left: 10px;
+}
+
+.campo-checkbox input[type="text"]:disabled,
+.campo-checkbox input[type="number"]:disabled {
+    background-color: #e9e9e9;
+    cursor: not-allowed;
+}
+
+.observacoes-finais-semana {
+    text-align: center;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-top: 10px;
+    pointer-events: none; /* Impede interação do usuário */
+    user-select: none; /* Impede seleção de texto */
+}
+
+.save-complete-message {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: #008000; /* Verde */
+    color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    z-index: 1001;
+    font-size: 1.5em;
+    text-align: center;
+    display: none; /* Inicialmente escondido */
+}
+
+.save-complete-message.active {
+    display: block; /* Mostra a mensagem quando ativa */
+}
+
+/* Adicione isso ao seu arquivo style.css */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.4);
+    padding-top: 60px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.modal.show {
+    display: block;
+    opacity: 1;
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 5% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    animation: slide-down 0.3s ease-out;
+}
+
+@keyframes slide-down {
+    from {
+        transform: translateY(-50px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* Adicione isso ao seu arquivo style.css */
+.observacao-input {
+    background-color: #f9f9f9;
+    border: 1px solid #ccc;
+    padding: 5px;
+    border-radius: 4px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.observacao-input:disabled {
+    background-color: #e9e9e9;
+    color: #999;
+}
+
+.tooltip {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+}
+
+.tooltip .tooltiptext {
+    visibility: hidden;
+    width: 120px;
+    background-color: black;
+    color: #fff;
+    text-align: center;
+    border-radius: 5px;
+    padding: 5px;
+    position: absolute;
+    z-index: 1;
+    bottom: 125%; /* Posiciona o tooltip acima do texto */
+    left: 50%;
+    margin-left: -60px;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.tooltip:hover .tooltiptext {
+    visibility: visible;
+    opacity: 1;
+}
+
+/* Adicione isso ao seu arquivo style.css */
+.notificacao {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #444;
+    color: #fff;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.5);
+    z-index: 1000;
+    display: none;
+}
+
+.notificacao.sucesso {
+    background-color: #4CAF50;
+}
+
+.notificacao.erro {
+    background-color: #f44336;
+}
+
+/* Adicione isso ao seu arquivo style.css */
+input:required:invalid {
+    border: 2px solid red;
+    animation: shake 0.3s;
+}
+
+@keyframes shake {
+    0% { transform: translateX(0); }
+    25% { transform: translateX(-5px); }
+    50% { transform: translateX(5px); }
+    75% { transform: translateX(-5px); }
+    100% { transform: translateX(0); }
+}
+
+/* Adicione isso ao seu arquivo style.css */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.fade-in {
+    animation: fadeIn 1s ease-out;
+}
+
+/* Adicione isso ao seu arquivo style.css */
+.fade-in {
+    animation: fadeIn 0.5s ease-out forwards;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.fade-out {
+    animation: fadeOut 0.5s ease-out forwards;
+}
+
+@keyframes fadeOut {
+    from {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    to {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+}
+
+.folha-de-ponto .entrada, 
+.folha-de-ponto .saida,
+.folha-de-ponto .carga-horaria,
+.folha-de-ponto .inicio-intervalo, 
+.folha-de-ponto .fim-intervalo {
+    font-size: 10px; /* Ajuste o tamanho da fonte conforme necessário */
+    word-wrap: break-word; /* Permite que o texto quebre para a linha de baixo, se necessário */
+    white-space: normal; /* Permite que o texto ocupe várias linhas, se necessário */
+    overflow: hidden; /* Garante que o texto não ultrapasse o limite da célula */
+    text-overflow: ellipsis; /* Adiciona reticências se o texto for muito longo */
+}
+.folha-de-ponto .observacao {
+    font-size: 10px; /* Ajuste o tamanho da fonte conforme necessário */
+    word-wrap: break-word; /* Permite que o texto quebre para a linha de baixo, se necessário */
+    white-space: normal; /* Permite que o texto ocupe várias linhas, se necessário */
+    overflow: hidden; /* Garante que o texto não ultrapasse o limite da célula */
+    text-overflow: ellipsis; /* Adiciona reticências se o texto for muito longo */
+}
+.folha-de-ponto td input[type="text"] {
+    text-align: center; /* Centraliza o texto horizontalmente */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 400%; /* Garante que o input ocupe toda a altura da célula */
+    line-height: 1.2; /* Ajusta a altura da linha para centralizar verticalmente */
+    font-size: 14px;
+    font-weight: lighter;
+    border: none;
+    font-family: 'Segoe UI', Tahoma, Verdana, sans-serif;
+    padding: 0;
+    margin: 0;
+}
+.header-folha h2 {
+    text-align: center;
+    width: 100%;  /* Garante que o elemento ocupe toda a largura do container */
+    padding-right: 200px;
+    padding-left: 100px;
+    padding-top: 25px;
+    font-size: 20px; /* Ajuste o tamanho da fonte conforme necessário */
+}
+
+/* Estilos para dispositivos móveis */
+@media (max-width: 1080px) {
+    .header-folha {
+        padding: 10px 20px;
+    }
+
+    .header-folha h2 {
+        font-size: 20px;
+    }
+}
+
+@media (max-width: 768px) {
+    .header-folha {
+        padding: 10px 15px;
+    }
+
+    .header-folha h2 {
+        font-size: 18px;
+    }
+}
