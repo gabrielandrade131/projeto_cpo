@@ -170,15 +170,23 @@
         function salvarDados() {
             const nome = document.getElementById('nome').value;
             const cpf = document.getElementById('cpf').value;
-            const funcao = document.getElementById('funcao').value;
             const matricula = document.getElementById('matricula').value;
-        
+            const funcao = document.getElementById('funcao').value;
+            const competencia = document.getElementById('competencia').value;
+
             fetch('/salvar_colaborador/', {
                 method: 'POST',
                 headers: {
-                    'Content-Type': 'application/x-www-form-urlencoded',
+                    'Content-Type': 'application/json',
+                    'X-CSRFToken': '{{ csrf_token }}'
                 },
-                body: `nome=${nome}&cpf=${cpf}&funcao=${funcao}&matricula=${matricula}`
+                body: JSON.stringify({
+                    nome: nome,
+                    cpf: cpf,
+                    matricula: matricula,
+                    funcao: funcao,
+                    competencia: competencia
+                })
             })
             .then(response => response.json())
             .then(data => {
@@ -189,6 +197,6 @@
                 alert('Erro ao salvar os dados.');
             });
         }
-        </script> 
+    </script>
 </body>
 </html>

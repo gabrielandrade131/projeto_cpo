@@ -24,4 +24,5 @@ urlpatterns = [
     path('', include('django.contrib.auth.urls')),  # Inclui as views de login/logout (login, logout, etc.)
     path('dashboard/', views.dashboard, name='dashboard'),  # Página do dashboard, acessível para usuários logados
     path('register/', views.register, name='register'),  # URL para o cadastro de usuário
+     path('salvar_colaborador/', views.salvar_colaborador, name='salvar_colaborador'),  # URL para salvar colaborador
 ]

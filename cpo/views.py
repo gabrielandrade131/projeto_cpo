@@ -2,7 +2,11 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
-from .forms import CustomUserCreationForm  # Se você tiver criado um formulário customizado
+from .forms import CustomUserCreationForm
+from django.http import JsonResponse
+from django.views.decorators.csrf import csrf_exempt
+from .models import Colaborador
+import json
 
 # View para redirecionar para login
 def home(request):
@@ -28,3 +32,20 @@ def register(request):
         form = UserCreationForm()
 
     return render(request, 'registration/register.html', {'form': form})
+
+@csrf_exempt
+def salvar_colaborador(request):
+    if request.method == 'POST':
+        try:
+            data = json.loads(request.body)
+            colaborador = Colaborador.objects.create(
+                nome=data['nome'],
+                cpf=data['cpf'],
+                matricula=data['matricula'],
+                funcao=data['funcao'],
+                competencia=data['competencia']
+            )
+            return JsonResponse({'mensagem': 'Dados salvos com sucesso!'}, status=201)
+        except Exception as e:
+            return JsonResponse({'erro': str(e)}, status=400)
+    return JsonResponse({'erro': 'Método não permitido'}, status=405)
