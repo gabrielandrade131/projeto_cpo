@@ -12,38 +12,31 @@ function atualizarDias() {
 
     const diasSemana = ["Domingo", "Segunda-feira", "Terça-feira", "Quarta-feira", "Quinta-feira", "Sexta-feira", "Sábado"];
 
-    for (let dia = 16; dia <= diasNoMes; dia++) {
+    for (let dia = 1; dia <= diasNoMes; dia++) {
         const data = new Date(2025, mesIndex, dia);
         const diaSemana = diasSemana[data.getDay()];
-        const observacao = dadosSalvos.dias.find(d => d.dia == dia)?.observacoes || '';
+        const observacao = dadosSalvos.dias.find(d => d.dia == dia)?.observacao || '';
+        const entrada = dadosSalvos.dias.find(d => d.dia == dia)?.entrada || '';
+        const inicioIntervalo = dadosSalvos.dias.find(d => d.dia == dia)?.inicioIntervalo || '';
+        const fimIntervalo = dadosSalvos.dias.find(d => d.dia == dia)?.fimIntervalo || '';
+        const saida = dadosSalvos.dias.find(d => d.dia == dia)?.saida || '';
+        const rdo = dadosSalvos.dias.find(d => d.dia == dia)?.rdo || '';
+        const regime = dadosSalvos.dias.find(d => d.dia == dia)?.regime || '';
+        const horaExtra = dadosSalvos.dias.find(d => d.dia == dia)?.horaExtra || '';
+        const assinatura = dadosSalvos.dias.find(d => d.dia == dia)?.assinatura || '';
 
         const tr = document.createElement('tr');
         tr.innerHTML = `
             <td>${dia} - ${diaSemana}</td>
-            <td class="entrada"><input type="text" class="hora-input" placeholder="00:00"></td>
-            <td class="inicio-intervalo"><input type="text" class="hora-input" placeholder="00:00"></td>
-            <td class="fim-intervalo"><input type="text" class="hora-input" placeholder="00:00"></td>
-            <td class="saida"><input type="text" class="hora-input" placeholder="00:00"></td>
-            <td class="carga-horária"><span id="carga-horaria-${dia}" class="resultado-carga">-</span></td>
+            <td class="entrada"><input type="text" class="hora-input" placeholder="00:00" value="${entrada}"></td>
+            <td class="inicio-intervalo"><input type="text" class="hora-input" placeholder="00:00" value="${inicioIntervalo}"></td>
+            <td class="fim-intervalo"><input type="text" class="hora-input" placeholder="00:00" value="${fimIntervalo}"></td>
+            <td class="saida"><input type="text" class="hora-input" placeholder="00:00" value="${saida}"></td>
+            <td class="rdo"><input type="text" class="rdo-input" placeholder="" value="${rdo}"></td>
+            <td class="regime"><input type="text" class="regime-input" placeholder="ON/OFF" value="${regime}"></td>
+            <td class="hora-extra"><input type="text" class="hora-extra-input" placeholder="00:00" value="${horaExtra}"></td>
             <td class="observacao"><input type="text" id="observacao-${dia}" value="${observacao}" onblur="salvarObservacao(${dia})"></td>
-        `;
-        tbody.appendChild(tr);
-    }
-
-    for (let dia = 1; dia <= 15; dia++) {
-        const data = new Date(2025, mesIndex + 1, dia);
-        const diaSemana = diasSemana[data.getDay()];
-        const observacao = dadosSalvos.dias.find(d => d.dia == dia)?.observacoes || '';
-
-        const tr = document.createElement('tr');
-        tr.innerHTML = `
-            <td>${dia} - ${diaSemana}</td>
-            <td class="entrada"><input type="text" class="hora-input" placeholder="00:00"></td>
-            <td class="inicio-intervalo"><input type="text" class="hora-input" placeholder="00:00"></td>
-            <td class="fim-intervalo"><input type="text" class="hora-input" placeholder="00:00"></td>
-            <td class="saida"><input type="text" class="hora-input" placeholder="00:00"></td>
-            <td class="carga-horária"><span id="carga-horaria-${dia}" class="resultado-carga">-</span></td>
-            <td class="observacao"><input type="text" id="observacao-${dia}" value="${observacao}" onblur="salvarObservacao(${dia})"></td>
+            <td class="assinatura"><input type="text" class="assinatura-input" placeholder="" value="${assinatura}"></td>
         `;
         tbody.appendChild(tr);
     }
@@ -96,6 +89,7 @@ function atualizarCampos() {
     document.getElementById('cpf-display').innerText = document.getElementById('cpf').value;
     document.getElementById('funcao-display').innerText = document.getElementById('funcao').value;
     document.getElementById('matricula-display').innerText = document.getElementById('matricula').value;
+    document.getElementById('pis-display').innerText = document.getElementById('pis').value;
 }
 
 function formatarCPF(cpf) {

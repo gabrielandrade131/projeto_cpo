@@ -37,6 +37,10 @@
                         <input type="text" id="matricula" oninput="atualizarCampos()" required>
                     </div>
                     <div class="campo">
+                        <label for="pis">PIS:</label>
+                        <input type="text" id="pis" oninput="atualizarCampos()" required>
+                    </div>
+                    <div class="campo">
                         <label for="funcao">Função/Position:</label>
                         <input type="text" id="funcao" oninput="atualizarCampos()" required>
                     </div>
@@ -81,64 +85,64 @@
             </div>
 
             <div class="folha-de-ponto" id="folha-de-ponto">
-                <div class="header-folha">
-                    <img src="../static/img/logo.png" alt="Logo da Empresa" class="logo-folha">
-                    <h2 class="titulo-folha-de-ponto">Folha de Ponto</h2>
-                </div>
-                <div class="dados-pessoais">
-                    <table class="dados-pessoais-tabela">
-                        <thead>
-                            <tr>
-                                <th>Nome/Name</th>
-                                <th>CPF</th>
-                                <th>Função/Position</th>
-                                <th>Matrícula</th>
-                                <th>Competência</th>
-                                <th>Total de Horas</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td id="nome-display" class="campo-primeira-linha"></td>
-                                <td id="cpf-display" class="segunda-linha"></td>
-                                <td id="funcao-display" class="campo-primeira-linha"></td>
-                                <td id="matricula-display" class="segunda_linha"></td>
-                                <td id="competencia-display" class="segunda_linha"></td>
-                                <td id="TotalHoras-display" class="segunda_linha"></td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-                <table>
+                <table class="tabela-cabecalho">
+                    <tr>
+                        <td rowspan="3" class="logo-cell">
+                            <img src="{% static 'img/logo.png' %}" alt="Logo da Empresa" class="logo-folha">
+                        </td>
+                        <td colspan="6" class="titulo-cpo">
+                            <div class="titulo-principal">CONTROLE DE PRESENÇA EM OPERAÇÕES</div>
+                            <div class="titulo-secundario">POINT AND OVERTIME SHEET</div>
+                        </td>
+                        <td rowspan="3" class="cpo-cell">
+                            <div class="cpo-title">CPO</div>
+                            <div class="cpo-ref">FOR-OPE-003 Rev. 9</div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" class="label-cell">NOME / NAME</td>
+                        <td colspan="2" class="label-cell">PIS</td>
+                        <td colspan="2" class="label-cell">CPF</td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" class="value-cell" id="nome-display"><strong>FILIPE SANTOS ROCHA</strong></td>
+                        <td colspan="2" class="value-cell" id="pis-display">000.000000.00-0</td>
+                        <td colspan="2" class="value-cell" id="cpf-display">115.417.047-03</td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" class="label-cell">FUNÇÃO / POSITION</td>
+                        <td colspan="2" class="label-cell">ADMISSÃO</td>
+                        <td class="label-cell">Nº DA MATRÍCULA</td>
+                        <td colspan="2" class="label-cell">COMPETÊNCIA</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" class="value-cell" id="funcao-display"><strong>COORDENADOR DE OPERAÇÕES</strong></td>
+                        <td colspan="2" class="value-cell" id="admissao-display"><strong>11/02/2025</strong></td>
+                        <td class="value-cell" id="matricula-display"><strong>1068747</strong></td>
+                        <td colspan="2" class="value-cell" id="competencia-display"><strong>JUNHO</strong></td>
+                        <td></td>
+                    </tr>
+                </table>
+                <table class="tabela-ponto">
                     <thead>
                         <tr>
-                            <th>Dia/Day</th>
-                            <th class="entrada">Entrada/Start</th>
-                            <th class="inicio-intervalo">Início do Intervalo/Break</th>
-                            <th class="fim-intervalo">Fim do Intervalo/Break</th>
-                            <th class="saida">Saída/End</th>
-                            <th class="carga-horária">Carga Horária/Workload</th>
-                            <th class="observacao">Observação (S/D/F/P)</th>
+                            <th>Dia / Day</th>
+                            <th>Entrada / Start</th>
+                            <th>Início do Intervalo / Break</th>
+                            <th>Fim do Intervalo / break</th>
+                            <th>Saída / End</th>
+                            <th>Nº RDO / DWR Nº</th>
+                            <th>Regime ON. ou OFF.</th>
+                            <th>Hora Extra Total Extra Time</th>
+                            <th>Observação S / D / F</th>
+                            <th>Ass. do Supervisor Supervisor signature</th>
                         </tr>
                     </thead>
                     <tbody id="tabela-dias">
-                        <tr>
-                            <td>1</td>
-                            <td class="entrada"><input type="time"></td>
-                            <td class="inicio-intervalo"><input type="time"></td>
-                            <td class="fim-intervalo"><input type="time"></td>
-                            <td class="saida"><input type="time"></td>
-                            <td class="carga-horária"><input type="text" class="campo-input"></td>
-                            <td class="observacao"><input type="text" class="campo-input"></td>
-                        </tr>
+                        <!-- Linhas dos dias aqui -->
                     </tbody>
                 </table>
-                <div class="assinaturas">
-                    <div class="campo-assinatura">
-                        <div class="linha-assinatura"></div>
-                        <strong>Assinatura do Colaborador</strong>
-                    </div>
-                </div>
             </div>
             <div class="botoes-acao">
                 <button id="export-pdf-btn">Exportar para PDF</button>
