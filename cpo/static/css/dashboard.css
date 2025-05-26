@@ -19,6 +19,10 @@ body, html {
     overflow-x: hidden;
 }
 
+body {
+    padding-top: 80px; /* ajuste conforme a altura do seu header */
+}
+
 .container {
     max-width: 100%;
     max-height: 100%;
@@ -179,178 +183,20 @@ button:hover {
 
 /* Folha de Ponto */
 .folha-de-ponto {
-    background: #fff;
-    padding: 0;
-    margin: 0 auto 20px auto;
-    max-width: 1200px;
-    border: 1px solid #bbb;
-    box-shadow: 0 2px 8px #0001;
-}
-
-.tabela-cabecalho {
+    display: block;
+    margin: 0;
+    padding: 0px;
+    border: none;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     width: 100%;
-    border-collapse: collapse;
-    table-layout: fixed;
-}
-
-.tabela-cabecalho td {
-    border: 1px solid #bbb;
-    padding: 6px 8px;
-    text-align: center;
-    font-size: 1em;
+    max-width: 23cm; /* Aumenta a largura da folha */
+    height: 32cm; /* Aumenta a altura da folha */
     overflow: hidden;
-    white-space: nowrap;
-}
-
-.logo-cell {
-    width: 240px;
-    min-width: 200px;
-    max-width: 260px;
-    text-align: left;
-    vertical-align: middle;
-    border-right: 1px solid #bbb;
-    background: #fff;
-}
-
-.titulo-cpo {
-    font-weight: bold;
-    font-size: 1.2em;
-    background: #fff;
-    border-bottom: none;
-}
-
-.titulo-principal {
-    font-size: 1.3em;
-    font-weight: bold;
-}
-
-.titulo-secundario {
-    font-size: 1em;
-    font-style: italic;
-    margin-top: 2px;
-}
-
-.cpo-cell {
-    width: 120px;
-    min-width: 100px;
-    max-width: 140px;
-    font-weight: bold;
-    font-size: 1.1em;
-    background: #fff;
-    border-left: 1px solid #bbb;
-    text-align: center;
-}
-
-.cpo-title {
-    font-size: 1.3em;
-    font-weight: bold;
-}
-
-.cpo-ref {
-    font-size: 0.9em;
-    margin-top: 10px;
-}
-
-.label-cell {
-    background: #f7f7f7;
-    font-size: 0.95em;
-    font-weight: bold;
-    border-bottom: none;
-}
-
-.value-cell {
-    background: #fff;
-    font-size: 1.1em;
-    font-weight: bold;
-    border-top: none;
-}
-
-<table class="tabela-cabecalho">
-    <tr>
-        <td rowspan="3" class="logo-cell">
-            <img src="{% static 'img/logo.png' %}" alt="Logo da Empresa" class="logo-folha">
-        </td>
-        <td colspan="6" class="titulo-cpo">
-            <div class="titulo-principal">CONTROLE DE PRESENÇA EM OPERAÇÕES</div>
-            <div class="titulo-secundario">POINT AND OVERTIME SHEET</div>
-        </td>
-        <td rowspan="3" class="cpo-cell">
-            <div class="cpo-title">CPO</div>
-            <div class="cpo-ref">FOR-OPE-003 Rev. 9</div>
-        </td>
-    </tr>
-    <tr>
-        <td colspan="2" class="label-cell">NOME / NAME</td>
-        <td colspan="2" class="label-cell">PIS</td>
-        <td colspan="2" class="label-cell">CPF</td>
-    </tr>
-    <tr>
-        <td colspan="2" class="value-cell" id="nome-display"></td>
-        <td colspan="2" class="value-cell" id="pis-display"></td>
-        <td colspan="2" class="value-cell" id="cpf-display"></td>
-    </tr>
-    <tr>
-        <td colspan="2" class="label-cell">FUNÇÃO / POSITION</td>
-        <td colspan="2" class="label-cell">ADMISSÃO</td>
-        <td class="label-cell">Nº DA MATRÍCULA</td>
-        <td colspan="2" class="label-cell">COMPETÊNCIA</td>
-        <td></td>
-    </tr>
-    <tr>
-        <td colspan="2" class="value-cell" id="funcao-display"></td>
-        <td colspan="2" class="value-cell" id="admissao-display">11/02/2025</td>
-        <td class="value-cell" id="matricula-display"></td>
-        <td colspan="2" class="value-cell" id="competencia-display"></td>
-        <td></td>
-    </tr>
-</table>
-
-.tabela-ponto {
-    width: 100%;
-    border-collapse: collapse;
-    table-layout: fixed;
-    font-size: 0.95em;
-}
-
-.tabela-ponto th, .tabela-ponto td {
-    border: 1px solid #bbb;
-    padding: 4px 2px;
-    text-align: center;
-    font-size: 0.95em;
-    background: #fff;
-    overflow: hidden;
-    white-space: nowrap;
-}
-
-.tabela-ponto th:nth-child(1), .tabela-ponto td:nth-child(1) { width: 8%; min-width: 70px; }
-.tabela-ponto th:nth-child(2), .tabela-ponto td:nth-child(2) { width: 7%; }
-.tabela-ponto th:nth-child(3), .tabela-ponto td:nth-child(3) { width: 10%; }
-.tabela-ponto th:nth-child(4), .tabela-ponto td:nth-child(4) { width: 10%; }
-.tabela-ponto th:nth-child(5), .tabela-ponto td:nth-child(5) { width: 7%; }
-.tabela-ponto th:nth-child(6), .tabela-ponto td:nth-child(6) { width: 8%; }
-.tabela-ponto th:nth-child(7), .tabela-ponto td:nth-child(7) { width: 8%; }
-.tabela-ponto th:nth-child(8), .tabela-ponto td:nth-child(8) { width: 10%; }
-.tabela-ponto th:nth-child(9), .tabela-ponto td:nth-child(9) { width: 12%; }
-.tabela-ponto th:nth-child(10), .tabela-ponto td:nth-child(10) { width: 18%; }
-
-.tabela-ponto input[type="text"] {
-    width: 95%;
-    padding: 2px 4px;
-    font-size: 0.95em;
-    border: 1px solid #ccc;
-    border-radius: 2px;
-    box-sizing: border-box;
-    text-align: center;
-}
-
-.tabela-ponto td input,
-.tabela-ponto td select {
-    width: 95%;
-    padding: 2px 4px;
-    font-size: 0.95em;
-    border: 1px solid #ccc;
-    border-radius: 2px;
-    box-sizing: border-box;
+    position: relative;
+    box-sizing: border-box; /* Garante que o padding e a borda sejam incluídos na largura e altura */
+    margin-bottom: 10px; /* Aumenta a margem inferior para evitar corte */
+    overflow-x: auto; /* Permite rolagem horizontal */
 }
 
 .header-folha {
@@ -368,7 +214,7 @@ button:hover {
 .header-folha h2 {
     text-align: center;
     width: 100%;
-    padding: 10px;
+    padding: 0;
     font-size: 24px;
 }
 
@@ -377,7 +223,6 @@ button:hover {
     width: auto;
     display: block;  /* Garante que a imagem será exibida */
     justify-content: flex-start;
-    text-align: left;
 }
 
 .folha-de-ponto table {
@@ -886,33 +731,4 @@ input:required:invalid {
     font-family: 'Segoe UI', Tahoma, Verdana, sans-serif;
     padding: 0;
     margin: 0;
-}
-.header-folha h2 {
-    text-align: center;
-    width: 100%;  /* Garante que o elemento ocupe toda a largura do container */
-    padding-right: 200px;
-    padding-left: 100px;
-    padding-top: 25px;
-    font-size: 20px; /* Ajuste o tamanho da fonte conforme necessário */
-}
-
-/* Estilos para dispositivos móveis */
-@media (max-width: 1080px) {
-    .header-folha {
-        padding: 10px 20px;
-    }
-
-    .header-folha h2 {
-        font-size: 20px;
-    }
-}
-
-@media (max-width: 768px) {
-    .header-folha {
-        padding: 10px 15px;
-    }
-
-    .header-folha h2 {
-        font-size: 18px;
-    }
 }

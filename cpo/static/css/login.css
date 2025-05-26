@@ -35,8 +35,7 @@ form p {
     margin-bottom: 15px;
 }
 
-input[type="text"],
-input[type="password"] {
+input {
     width: 100%;
     padding: 12px;
     margin: 0;
