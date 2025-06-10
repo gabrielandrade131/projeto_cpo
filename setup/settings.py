@@ -124,7 +124,7 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 LOGIN_URL = 'login' # nome da URL de login
-LOGIN_REDIRECT_URL = '/pos-login-redirect/' # para onde vai depois do login
+LOGIN_REDIRECT_URL = '/dashboard/' # para onde vai depois do login
 LOGOUT_REDIRECT_URL = 'login' # para onde vai depois do logout
 
 SESSION_ENGINE = 'django.contrib.sessions.backends.db'

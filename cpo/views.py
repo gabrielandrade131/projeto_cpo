@@ -15,32 +15,29 @@ def home(request):
 # View para o dashboard, apenas acessível para usuários autenticados
 @login_required
 def dashboard(request):
-    colaborador = None
-    if hasattr(request.user, 'colaborador'):
-        colaborador = request.user.colaborador
-    return render(request, 'dashboard.html', {'user': request.user, 'colaborador': colaborador})
+    try:
+        colaborador = Colaborador.objects.get(cpf=request.user.username)
+    except Colaborador.DoesNotExist:
+        colaborador = None
+    return render(request, 'dashboard.html', {'colaborador': colaborador})
 
 # View para o cadastro de usuário utilizando o formulário customizado
 def register(request):
     if request.method == 'POST':
         form = UsuarioColaboradorForm(request.POST)
         if form.is_valid():
-            user = form.save(commit=False)
-            user.email = form.cleaned_data['email']
-            user.save()
-            colaborador = Colaborador.objects.create(
-                nome=form.cleaned_data['nome'],
-                email=form.cleaned_data['email'],
-                tipo=form.cleaned_data['tipo'],
-                cpf=form.cleaned_data['cpf'],
-                matricula=form.cleaned_data['matricula'],
-                funcao=form.cleaned_data['funcao'],
-                PIS=form.cleaned_data['PIS'],
-                data_admissao=form.cleaned_data['data_admissao'],
-                user=user
-            )
-            messages.success(request, 'Cadastro realizado com sucesso! Você já pode fazer login.')
-            return redirect('login')
+            cpf = form.cleaned_data['cpf']
+            try:
+                colaborador = Colaborador.objects.get(cpf=cpf)
+                user = form.save(commit=False)
+                user.email = form.cleaned_data['email']
+                user.save()
+                colaborador.user = user
+                colaborador.save()
+                messages.success(request, 'Cadastro realizado com sucesso! Você já pode fazer login.')
+                return redirect('login')
+            except Colaborador.DoesNotExist:
+                form.add_error('cpf', 'Colaborador não encontrado. Verifique seu CPF.')
     else:
         form = UsuarioColaboradorForm()
     return render(request, 'registration/register.html', {'form': form})
