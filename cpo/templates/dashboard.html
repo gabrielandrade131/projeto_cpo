@@ -14,9 +14,206 @@
 <body>
     <header class="header">
 
+        <img src="../static/img/logo.png" alt="Logo da Empresa">
+        <h1>Preenchimento da Folha de Ponto</h1>
+    </header>{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Preenchimento da Folha</title>
+    <link rel="stylesheet" href="{% static 'css/dashboard.css' %}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+</head>
+<body>
+    <header class="header">
+
         <img src="{% static 'img/logo.png' %}" alt="Logo da Empresa">
         <h1>Preenchimento da Folha de Ponto</h1>
     </header>
+
+    <main>
+        <div class="container">
+            <div class="formulario">
+                <h2>Dados Pessoais</h2>
+                <div class="dados-pessoais-form">
+                    <div class="campo">
+
+                        <label for="nome">Nome/Name:</label>
+                        <input type="text" id="nome" oninput="atualizarCampos()" required>
+                    </div>
+                    <div class="campo">
+                        <label for="cpf">CPF:</label>
+                        <input type="text" id="cpf" oninput="atualizarCampos()" required>
+                    </div>
+                    <div class="campo">
+                        <label for="matricula">Matrícula:</label>
+                        <input type="text" id="matricula" oninput="atualizarCampos()" required>
+                    </div>
+                    <div class="campo">
+                        <label for="funcao">Função/Position:</label>
+                        <input type="text" id="funcao" oninput="atualizarCampos()" required>
+                    </div>
+                    <div class="campo">
+                        <label for="pis">PIS:</label>
+                        <input type="text" id="pis" oninput="atualizarCampos()" required>
+                    </div>
+                    <div class="campo">
+                        <label for="ctps">Nº CTPS:</label>
+                        <input type="text" id="ctps" oninput="atualizarCampos()" required>
+                    </div>
+                    <div class="campo">
+                        <label for="data-admissao">Data de Admissão:</label>
+                        <input type="date" id="data-admissao" oninput="atualizarCampos()" required>
+                    </div>
+                    <div class="campo">
+                        <label for="competencia">Competência:</label>
+                        <select id="competencia" onchange="atualizarCampos()" required>
+                            <option value="">Selecione</option>
+                            <option value="1">Janeiro</option>
+                            <option value="2">Fevereiro</option>
+                            <option value="3">Março</option>
+                            <option value="4">Abril</option>
+                            <option value="5">Maio</option>
+                            <option value="6">Junho</option>
+                            <option value="7">Julho</option>
+                            <option value="8">Agosto</option>
+                            <option value="9">Setembro</option>
+                            <option value="10">Outubro</option>
+                            <option value="11">Novembro</option>
+                            <option value="12">Dezembro</option>
+                        </select>
+                    </div>
+                    <div class="campo">
+                        <label for="ano-competencia">Ano:</label>
+                        <select id="ano-competencia">
+                            <option value="2024">2024</option>
+                            <option value="2025" selected>2025</option>
+                            <option value="2026">2026</option>
+                        </select>
+                    </div>
+                    
+                </div>
+            </div>
+            <div class="folha-de-ponto" id="folha-de-ponto">
+                <div class="header-folha">
+                    <div class="header-bloco-esquerda">
+                        <img src="{% static 'img/logo.png' %}" alt="Logo da Empresa" class="logo-folha">
+                    </div>
+                    <div class="header-bloco-centro">
+                        <p class="titulo-folha-de-ponto"><b>CONTROLE DE PRESENÇA EM OPERAÇÕES</b></p>
+                        <p>POINT AND OVERTIME SHEET</p>
+                    </div>
+                    <div class="header-bloco-direita">
+                        <p class="cpo-canto">CPO</p>
+                        <p class="forope-canto">FOR-OPE-003 Rev. 9</p>
+                    </div>
+                </div>
+                <div class="dados-pessoais">
+                    <table class="dados-pessoais-tabela">
+                        <thead>
+                            <tr>
+                                <th>Nome</th>
+                                <th>PIS</th>
+                                <th>CPF</th>
+                                <th>Função</th>
+                            </tr>
+                                 
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td id="nome-display" class="campo-primeira-linha"></td>
+                                <td id="pis-display" class="campo-primeira-linha"></td>
+                                <td id="cpf-display" class="campo-primeira-linha"></td>
+                                <td id="funcao-display" class="campo-primeira-linha"></td>
+                            </tr>
+                                
+                        </tbody>
+                        <thead>
+                            <tr>
+                            <th>Matrícula</th>
+                            <th>Competência</th>
+                            <th>Nº CTPS</th>
+                            <th>Admissão</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+    <td id="matricula-display" class="segunda_linha"></td>
+    <td id="competencia-display" class="segunda_linha"></td>
+    <td id="ctps-display" class="segunda_linha"></td>
+    <td id="admissao-display" class="segunda_linha"></td>
+</tr>
+                        </tbody>
+                    </table>
+                </div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Dia</th>
+                            <th class="entrada">Entrada</th>
+                            <th class="inicio-intervalo">Início do Intervalo</th>
+                            <th class="fim-intervalo">Fim do Intervalo</th>
+                            <th class="saida">Saída</th>
+                            <th class="rdo">N° RDO</th>
+                            <th class="regime">Regime ON. ou OFF.</th>
+                            <th class="hora-extra">Hora Extra Total</th>
+                            <th class="observacao">Observação (S/D/F/P)</th>
+                            <th class="assinatura">Assinatura do Supervisor</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tabela-dias">
+                        <!-- As linhas serão geradas dinamicamente pelo JS -->
+                    </tbody>
+                </table>
+                <div class="assinaturas">
+                    <div class="campo-assinatura colaborador">
+                        <div class="linha-assinatura"></div>
+                        <strong>Assinatura do Colaborador</strong>
+                    </div>
+                    <!-- Espaço de duas linhas -->
+                    <div style="height: 2.5em;"></div>
+                    <div class="assinaturas-duplas">
+                        <div class="campo-assinatura operacoes">
+                            <div class="linha-assinatura"></div>
+                            <strong>Operações / Operations</strong>
+                        </div>
+                        <div class="campo-assinatura rh">
+                            <div class="linha-assinatura"></div>
+                            <strong>RH / HR</strong>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="botoes-acao">
+                <button id="export-pdf-btn">Exportar para PDF</button>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer"></footer>
+
+    <div id="loading" class="loading-overlay" style="display: none;">
+        <div class="loading-spinner"></div>
+        <p>Processando...</p>
+    </div>
+
+    <div id="saving-message" class="saving-message" style="display: none;">
+        <div class="saving-spinner"></div>
+        <p>Salvando dados...</p>
+    </div>
+
+    <div id="save-complete-message" class="save-complete-message" style="display: none;">
+        <p>Salvamento concluído!</p>
+    </div>
+
+    <script src="{% static 'js/script.js' %}"></script>
+</body>
+</html>
 
     <main>
         <div class="container">
@@ -82,7 +279,7 @@
 
             <div class="folha-de-ponto" id="folha-de-ponto">
                 <div class="header-folha">
-                    <img src="{% static 'img/logo.png' %}" alt="Logo da Empresa" class="logo-folha">
+                    <img src="../static/img/logo.png" alt="Logo da Empresa" class="logo-folha">
                     <h2 class="titulo-folha-de-ponto">Folha de Ponto</h2>
                 </div>
                 <div class="dados-pessoais">
@@ -97,8 +294,8 @@
                         </thead>
                         <tbody>
                             <tr>
-                                <td id="nome-display" class="campo-primeira-linha">{{ colaborador.nome }}</td>
-                                <td id="cpf-display" class="segunda-linha">{{ colaborador.cpf }}</td>
+                                <td id="nome-display" class="campo-primeira-linha"></td>
+                                <td id="cpf-display" class="segunda-linha"></td>
                                 <td id="funcao-display" class="campo-primeira-linha"></td>
                             </tr>
                                 
@@ -173,7 +370,7 @@
         <p>Salvamento concluído!</p>
     </div>
 
-    <script src="{% static 'js/script.js' %}"></script>
+    <script src="../static/js/script.js"></script>
     <script>
 // filepath: c:\Users\Gabriel\folha_de_ponto\cpo\templates\dashboard.html
 

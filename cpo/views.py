@@ -15,12 +15,10 @@ def home(request):
 # View para o dashboard, apenas acessível para usuários autenticados
 @login_required
 def dashboard(request):
-    return render(request, 'dashboard.html', {'user': request.user})
-
-# View para o dashboard operacional, apenas acessível para usuários autenticados
-@login_required
-def dashboard_operacional(request):
-    return render(request, 'dashboard_operacional.html')
+    colaborador = None
+    if hasattr(request.user, 'colaborador'):
+        colaborador = request.user.colaborador
+    return render(request, 'dashboard.html', {'user': request.user, 'colaborador': colaborador})
 
 # View para o cadastro de usuário utilizando o formulário customizado
 def register(request):
@@ -115,8 +113,3 @@ def salvar_folha_ponto(request):
         )
         return JsonResponse({'status': 'ok'})
     return JsonResponse({'error': 'Método não permitido'}, status=405)
-
-@login_required
-def dashboard_backoffice(request):
-    colaborador = Colaborador.objects.get(user=request.user)
-    return render(request, 'dashboard_backoffice.html', {'colaborador': colaborador})
