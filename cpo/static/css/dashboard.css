@@ -16,22 +16,27 @@ body, html {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
-    overflow-x: hidden;
 }
 
 body {
     padding-top: 80px; /* ajuste conforme a altura do seu header */
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+html {
+    overflow: hidden;
+    height: 100%;
 }
 
 .container {
     max-width: 100%;
-    max-height: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: space-around;
     margin-top: 20px;
-    flex-grow: 1; /* Permite que o container cresça para ocupar o espaço disponível */
+    flex-grow: 1;
 }
 
 header {
@@ -95,7 +100,7 @@ main {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    width: 100%; /* Garante que o main ocupe toda a largura */
+    width: 100%;
 }
 
 .formulario {
@@ -103,8 +108,9 @@ main {
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    width: 100%;
-    max-width: 600px;
+    width: 18cm;
+    max-width: 18cm;
+    min-width: 18cm;
     margin-bottom: 20px;
 }
 
@@ -184,31 +190,58 @@ button:hover {
 /* Folha de Ponto */
 .folha-de-ponto {
     display: block;
-    margin: 0;
-    padding: 0px;
-    border: none;
+    margin: 20px auto;
+    padding: 20px 10px;
     background-color: #fff;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    width: 100%;
-    max-width: 23cm; /* Aumenta a largura da folha */
-    height: 32cm; /* Aumenta a altura da folha */
-    overflow: hidden;
+    width: 21cm;
+    max-width: 21cm;
+    min-width: 21cm;
+    /* height: auto; */
+    /* max-height: none; */
+    /* overflow: visible; */
+    /* NÃO coloque height fixa! */
+    box-sizing: border-box;
     position: relative;
-    box-sizing: border-box; /* Garante que o padding e a borda sejam incluídos na largura e altura */
-    margin-bottom: 10px; /* Aumenta a margem inferior para evitar corte */
-    overflow-x: auto; /* Permite rolagem horizontal */
+}
+
+.folha-de-ponto {
+    width: 21cm;
+    max-width: 21cm;
+    min-width: 21cm;
+    margin: 0 auto;
+    padding: 0.5cm 0.2cm; /* Reduzido */
+    box-sizing: border-box;
+    background: #fff;
+}
+
+.folha-de-ponto,
+.folha-de-ponto table {
+    height: auto !important;
+    max-height: none !important;
+    border-collapse: collapse;
 }
 
 .header-folha {
-    max-width: 1080px;
-    width: 100%;
-    margin: 0 auto;
-    padding: 10px 20px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;         /* Garante que ocupe toda a largura */
+    max-width: none;     /* Remove limite de largura */
+    margin: 0;           /* Remove centralização fixa */
+    padding: 0.2cm 0;     /* Padding só vertical, se quiser */
     box-sizing: border-box;
     text-align: center;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+}
+
+.header-bloco-direita{
+padding-right: 20px;
+}
+.cpo-canto, .forope-canto {
+    margin: 0;
+    font-size: 14px;
+    font-weight: bold;
 }
 
 .header-folha h2 {
@@ -227,19 +260,27 @@ button:hover {
 
 .folha-de-ponto table {
     width: 100%;
+    height: auto; /* Não força a tabela a ocupar toda a altura */
     border-collapse: collapse;
     table-layout: fixed;
-    min-width: 600px; /* Define uma largura mínima para a tabela */
+    background: #fff;
+    margin: 0;
 }
 
-/* Define a largura fixa para as colunas da tabela */
+/* Ajuste a altura das células para diminuir a altura total da tabela */
 .folha-de-ponto th, .folha-de-ponto td {
-    width: 16.66%; /* Define a largura para que todas as colunas tenham a mesma largura */
-    padding: 2px; /* Reduzido para economizar espaço */
-    border: 1px solid black;
-    word-wrap: break-word;
+    border: 1px solid #000;
+    padding: 4px 2px;
+    font-size: 10px;
+    word-break: break-word;
+    white-space: normal;
     text-align: center;
-    font-size: 10px; /* Aumentado para melhor visualização */
+    vertical-align: middle;
+    background: #fff;
+    height: 22px;
+    min-height: 16px;
+    vertical-align: middle;
+    padding: 5px; /* <-- Adicione padding horizontal */
 }
 
 /* Define a largura fixa para os campos de entrada de tempo */
@@ -310,16 +351,18 @@ button:hover {
 /* Assinaturas */
 .assinaturas {
     display: flex;
-    justify-content: center; /* Centraliza a assinatura do colaborador */
-    margin-top: 80px; /* Aumente este valor para mover a assinatura mais para baixo */
+    flex-direction: column;
+    align-items: center;
+    margin-top: 35px;
+    width: 100%;
 }
 
 /* Linha de assinatura do colaborador */
 .campo-assinatura {
-    width: 50%; /* Ajusta a largura para centralizar */
-    text-align: center; /* Centraliza a linha */
-    margin-top: 5%; /* Reduz o espaço acima da linha */
-    margin-bottom: 10px; /* Reduz o espaço abaixo da linha */
+    width: 60%;
+    min-width: 180px;
+    text-align: center;
+    margin: 0 auto 10px auto;
     position: relative;
 }
 
@@ -334,6 +377,32 @@ button:hover {
     display: block;
     margin-top: 5px; /* Reduz o espaço acima do texto */
     text-align: center; /* Centraliza o texto */
+}
+
+.assinaturas-duplas {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 60px; /* Espaço entre Operações e RH */
+    width: 100%;
+}
+
+.assinaturas-duplas .campo-assinatura {
+    width: 220px;
+    min-width: 160px;
+    margin: 0 0 10px 0;
+}
+
+@media (max-width: 700px) {
+    .assinaturas-duplas {
+        flex-direction: column;
+        gap: 0;
+        align-items: center;
+    }
+    .assinaturas-duplas .campo-assinatura {
+        width: 90%;
+        margin-bottom: 10px;
+    }
 }
 
 /* Estilos para o seletor de tempo */
@@ -718,8 +787,7 @@ input:required:invalid {
     overflow: hidden; /* Garante que o texto não ultrapasse o limite da célula */
     text-overflow: ellipsis; /* Adiciona reticências se o texto for muito longo */
 }
-.folha-de-ponto td input[type="text"] {
-    text-align: center; /* Centraliza o texto horizontalmente */
+ .folha-de-ponto td input[type="text"] {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -731,4 +799,112 @@ input:required:invalid {
     font-family: 'Segoe UI', Tahoma, Verdana, sans-serif;
     padding: 0;
     margin: 0;
+}
+.logo-folha {
+    justify-content: flex-start;
+}
+#ctps {
+    text-transform: uppercase;
+}
+.folha-de-ponto th,
+.folha-de-ponto td {
+    word-break: break-word;
+    white-space: normal;
+    text-align: center;
+    vertical-align: middle;
+    padding: 5px 4px;
+}
+
+.folha-de-ponto th.N\°\ RDO\/DWR\ N\°,
+.folha-de-ponto th.Regime\ ON.\ ou\ OFF.,
+.folha-de-ponto th.Hora\ Extra\ Tota\/Extra\ time,
+.folha-de-ponto th.observacao,
+.folha-de-ponto th.Assinatura\ do\ Supervisor\/Supervisor\ Signature,
+.folha-de-ponto td.rdo,
+.folha-de-ponto td.regime,
+.folha-de-ponto td.hora-extra,
+.folha-de-ponto td.observacao,
+.folha-de-ponto td.assinatura {
+    min-width: 110px;
+    max-width: 160px;
+    font-size: 10px;
+    word-break: break-word;
+    white-space: normal;
+}
+
+/* Corrige largura e visualização das colunas da folha de ponto */
+.folha-de-ponto th,
+.folha-de-ponto td {
+    border: 1px solid #000;
+    padding: 4px 2px;
+    font-size: 10px;
+    word-break: break-word;
+    white-space: normal;
+    text-align: center;
+    vertical-align: middle;
+    background: #fff;
+}
+
+.folha-de-ponto th.entrada,
+.folha-de-ponto td.entrada,
+.folha-de-ponto th.inicio-intervalo,
+.folha-de-ponto td.inicio-intervalo,
+.folha-de-ponto th.fim-intervalo,
+.folha-de-ponto td.fim-intervalo,
+.folha-de-ponto th.saida,
+.folha-de-ponto td.saida {
+    width: 60px;
+}
+
+.folha-de-ponto th.rdo,
+.folha-de-ponto td.rdo,
+.folha-de-ponto th.regime,
+.folha-de-ponto td.regime,
+.folha-de-ponto th.hora-extra,
+.folha-de-ponto td.hora-extra,
+.folha-de-ponto th.observacao,
+.folha-de-ponto td.observacao,
+.folha-de-ponto th.assinatura,
+.folha-de-ponto td.assinatura {
+    width: 90px;
+    min-width: 80px;
+    max-width: 120px;
+}
+
+.folha-de-ponto th {
+    font-weight: bold;
+    font-size: 11px;
+    background: #f8f8f8;
+}
+
+.folha-de-ponto td input[type="text"] {
+    width: 95%;
+    box-sizing: border-box;
+    background: transparent;
+    border: none;
+    font-size: 10px;
+    text-align: center;
+    padding: 2px 0;
+    margin: 0 auto;
+    display: block;
+}
+
+@media print {
+    .folha-de-ponto {
+        width: 21cm;
+        max-width: 21cm;
+        min-width: 21cm;
+        /* height: auto; */
+        /* max-height: none; */
+        /* overflow: visible; */
+    }
+}
+.folha-de-ponto td {
+    padding: 2px 4px;
+}
+.folha-de-ponto td input[type="text"] {
+    width: 95%;
+    box-sizing: border-box;
+    background: transparent;
+    border: none;
 }

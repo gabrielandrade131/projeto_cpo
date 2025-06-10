@@ -1,6 +1,7 @@
 from django.db import models
 from django.core.exceptions import ValidationError
 import re
+from django.contrib.auth.models import User
 
 # Função para validar o CPF
 def validar_cpf(cpf):
@@ -22,7 +23,7 @@ class Colaborador(models.Model):
         ('operacional', 'Operacional'),
     ]
     nome = models.CharField(max_length=150)
-    email = models.EmailField(unique=True, default='exemplo@dominio.com')
+    email = models.EmailField(blank=True, null=True)
     tipo = models.CharField(max_length=20, choices=TIPO_CHOICES, default='backoffice')
     # Campos comuns
     cpf = models.CharField(max_length=14, validators=[validar_cpf])
@@ -30,8 +31,9 @@ class Colaborador(models.Model):
     funcao = models.CharField(max_length=255)
     # Campos específicos
     PIS = models.CharField(max_length=50, blank=True, null=True)
-    data_admissao = models.CharField(max_length=20, choices=MESES, default='março')
-    
+    data_admissao = models.DateField(null=True, blank=True, verbose_name="Data de Admissão")
+    ctps = models.CharField(max_length=20, blank=True, null=True, verbose_name="Nº CTPS")
+    user = models.OneToOneField(User, on_delete=models.SET_NULL, null=True, blank=True)
 
     def __str__(self):
         return self.nome
