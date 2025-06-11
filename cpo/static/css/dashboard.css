@@ -19,13 +19,12 @@ body, html {
 }
 
 body {
-    padding-top: 80px; /* ajuste conforme a altura do seu header */
     min-height: 100vh;
     overflow-x: hidden;
 }
 
 html {
-    overflow: hidden;
+    overflow-x: hidden;
     height: 100%;
 }
 
@@ -99,8 +98,9 @@ main {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
     width: 100%;
+    overflow-y: auto;
 }
 
 .formulario {
@@ -182,12 +182,11 @@ button:hover {
 
 .botoes-acao {
     display: flex;
-    gap: 10px; /* Espaçamento entre os botões */
-    justify-content: center; /* Centraliza os botões */
-    margin-top: 20px; /* Adiciona espaço acima dos botões */
+    gap: 10px;
+    justify-content: center;
+    margin-top: 20px;
 }
 
-/* Folha de Ponto */
 .folha-de-ponto {
     display: block;
     margin: 20px auto;
@@ -197,10 +196,6 @@ button:hover {
     width: 21cm;
     max-width: 21cm;
     min-width: 21cm;
-    /* height: auto; */
-    /* max-height: none; */
-    /* overflow: visible; */
-    /* NÃO coloque height fixa! */
     box-sizing: border-box;
     position: relative;
 }
@@ -210,7 +205,7 @@ button:hover {
     max-width: 21cm;
     min-width: 21cm;
     margin: 0 auto;
-    padding: 0.5cm 0.2cm; /* Reduzido */
+    padding: 0.5cm 0.2cm;
     box-sizing: border-box;
     background: #fff;
 }
@@ -227,10 +222,10 @@ button:hover {
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
-    width: 100%;         /* Garante que ocupe toda a largura */
-    max-width: none;     /* Remove limite de largura */
-    margin: 0;           /* Remove centralização fixa */
-    padding: 0.2cm 0;     /* Padding só vertical, se quiser */
+    width: 100%;
+    max-width: none;     
+    margin: 0;           
+    padding: 0.2cm 0;    
     box-sizing: border-box;
     text-align: center;
 }
@@ -252,22 +247,22 @@ padding-right: 20px;
 }
 
 .logo-folha {
-    max-height: 100px;  /* Ajuste o tamanho conforme necessário */
+    max-height: 100px;  
     width: auto;
-    display: block;  /* Garante que a imagem será exibida */
+    display: block; 
     justify-content: flex-start;
 }
 
 .folha-de-ponto table {
     width: 100%;
-    height: auto; /* Não força a tabela a ocupar toda a altura */
+    height: auto; 
     border-collapse: collapse;
     table-layout: fixed;
     background: #fff;
     margin: 0;
 }
 
-/* Ajuste a altura das células para diminuir a altura total da tabela */
+
 .folha-de-ponto th, .folha-de-ponto td {
     border: 1px solid #000;
     padding: 4px 2px;
@@ -280,18 +275,16 @@ padding-right: 20px;
     height: 22px;
     min-height: 16px;
     vertical-align: middle;
-    padding: 5px; /* <-- Adicione padding horizontal */
+    padding: 5px;
 }
 
-/* Define a largura fixa para os campos de entrada de tempo */
 .folha-de-ponto input[type="time"], .folha-de-ponto input[type="text"] {
-    width: 100%; /* Garante que os campos de entrada ocupem toda a largura da célula */
-    box-sizing: border-box; /* Inclui o padding e a borda na largura total */
-    padding: 2px; /* Ajusta o padding para economizar espaço */
-    font-size: 10px; /* Ajusta o tamanho da fonte para corresponder ao tamanho da célula */
+    width: 100%;
+    box-sizing: border-box;
+    padding: 2px;
+    font-size: 10px;
 }
 
-/* Ajusta a largura das colunas específicas */
 .folha-de-ponto th.entrada, 
 .folha-de-ponto th.inicio-intervalo, 
 .folha-de-ponto th.fim-intervalo, 
@@ -304,26 +297,25 @@ padding-right: 20px;
 .folha-de-ponto td.saida, 
 .folha-de-ponto td.carga-horaria, 
 .folha-de-ponto td.observacao {
-    width: 16.66%; /* Define a largura para que todas as colunas tenham a mesma largura */
+    width: 16.66%;
 }
 
 .folha-de-ponto th.carga-horaria input[type="text"] {
-    width: 100%; /* Garante que o campo de entrada ocupe toda a largura da célula */
-    box-sizing: border-box; /* Inclui o padding e a borda na largura total */
-    padding: 2px; /* Ajusta o padding para economizar espaço */
-    font-size: 10px; /* Ajusta o tamanho da fonte para corresponder ao tamanho da célula */
+    width: 100%;
+    box-sizing: border-box;
+    padding: 2px;
+    font-size: 10px;
 }
 
-/* Ajusta a largura da coluna de observação */
 .folha-de-ponto th.observacao, 
 .folha-de-ponto td.observacao {
-    width: 16.66%; /* Define a largura para a coluna de observação */
+    width: 16.66%;
 }
 .folha-de-ponto th.observacao input[type="text"] {
-    width: 100%; /* Garante que o campo de entrada ocupe toda a largura da célula */
-    box-sizing: border-box; /* Inclui o padding e a borda na largura total */
-    padding: 2px; /* Ajusta o padding para economizar espaço */
-    font-size: 10px; /* Ajusta o tamanho da fonte para corresponder ao tamanho da célula */
+    width: 100%;
+    box-sizing: border-box;
+    padding: 2px;
+    font-size: 10px;
 }
 .folha-de-ponto th.observacao input[type="text"]:disabled {
     background-color: #e9e9e9;
@@ -331,13 +323,13 @@ padding-right: 20px;
 }
 
 .folha-de-ponto td.observacao input[type="text"] {
-    text-transform: uppercase; /* Transforma o texto em maiúsculas */
-    text-align: center; /* Centraliza o texto */
+    text-transform: uppercase;
+    text-align: center;
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 400%; /* Garante que o input ocupe toda a altura da célula */
-    line-height: 1.2; /* Ajusta a altura da linha para centralizar verticalmente */
+    height: 400%;
+    line-height: 1.2;
     font-size: 14px;
     font-weight: lighter;
     border: none;
@@ -348,7 +340,6 @@ padding-right: 20px;
 .dados-pessoais {
     margin-bottom: 20px;
 }
-/* Assinaturas */
 .assinaturas {
     display: flex;
     flex-direction: column;
@@ -357,7 +348,6 @@ padding-right: 20px;
     width: 100%;
 }
 
-/* Linha de assinatura do colaborador */
 .campo-assinatura {
     width: 60%;
     min-width: 180px;
@@ -369,21 +359,21 @@ padding-right: 20px;
 .linha-assinatura {
     width: 100%;
     border-top: 1px solid #000;
-    margin-top: 5px; /* Reduz o espaço acima da linha */
-    margin-bottom: 5px; /* Reduz o espaço abaixo da linha */
+    margin-top: 5px; 
+    margin-bottom: 5px;
 }
 
 .campo-assinatura strong {
     display: block;
-    margin-top: 5px; /* Reduz o espaço acima do texto */
-    text-align: center; /* Centraliza o texto */
+    margin-top: 5px;
+    text-align: center;
 }
 
 .assinaturas-duplas {
     display: flex;
     flex-direction: row;
     justify-content: center;
-    gap: 60px; /* Espaço entre Operações e RH */
+    gap: 60px;
     width: 100%;
 }
 
@@ -405,7 +395,6 @@ padding-right: 20px;
     }
 }
 
-/* Estilos para o seletor de tempo */
 input[type="time"] {
     width: 100px;
     padding: 5px;
@@ -427,20 +416,19 @@ input[type="time"]::-webkit-calendar-picker-indicator {
     cursor: pointer;
 }
 
-/* Tela de carregamento */
 .loading-overlay {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.7); /* Fundo escuro com transparência */
+    background: rgba(0, 0, 0, 0.7);
     display: flex;
     justify-content: center;
     align-items: center;
     z-index: 1000;
     flex-direction: column;
-    gap: 20px; /* Espaço entre a animação e o texto */
+    gap: 20px;
 }
 
 .loading-dots {
@@ -483,7 +471,7 @@ input[type="time"]::-webkit-calendar-picker-indicator {
     font-family: 'Arial', sans-serif;
     text-align: center;
     margin: 0;
-    opacity: 0.8; /* Texto levemente translúcido */
+    opacity: 0.8;
 }
 
 .loading-overlay p, .saving-message p {
@@ -497,7 +485,7 @@ input[type="time"]::-webkit-calendar-picker-indicator {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    background: #008000; /* Verde */
+    background: #008000;
     color: #fff;
     padding: 20px;
     border-radius: 10px;
@@ -508,21 +496,19 @@ input[type="time"]::-webkit-calendar-picker-indicator {
 }
 
 .success-message {
-    display: none; /* Inicialmente escondido */
+    display: none;
 }
 
 .success-message.active {
-    display: block; /* Mostra a mensagem quando ativa */
+    display: block;
 }
 
-/* Estilos para os campos de assinatura */
 .assinaturas{
     display: flex;
     justify-content: center;
     margin-top: 35px;
 }
 
-/* Estilos personalizados para os campos de folga e férias */
 .campo-checkbox {
     display: flex;
     align-items: center;
@@ -564,8 +550,8 @@ input[type="time"]::-webkit-calendar-picker-indicator {
     border: 1px solid #ccc;
     border-radius: 5px;
     margin-top: 10px;
-    pointer-events: none; /* Impede interação do usuário */
-    user-select: none; /* Impede seleção de texto */
+    pointer-events: none;
+    user-select: none;
 }
 
 .save-complete-message {
@@ -573,7 +559,7 @@ input[type="time"]::-webkit-calendar-picker-indicator {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    background: #008000; /* Verde */
+    background: #008000;
     color: #fff;
     padding: 20px;
     border-radius: 10px;
@@ -581,134 +567,13 @@ input[type="time"]::-webkit-calendar-picker-indicator {
     z-index: 1001;
     font-size: 1.5em;
     text-align: center;
-    display: none; /* Inicialmente escondido */
+    display: none;
 }
 
 .save-complete-message.active {
-    display: block; /* Mostra a mensagem quando ativa */
-}
-
-/* Adicione isso ao seu arquivo style.css */
-.modal {
-    display: none;
-    position: fixed;
-    z-index: 1;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    overflow: auto;
-    background-color: rgba(0,0,0,0.4);
-    padding-top: 60px;
-    opacity: 0;
-    transition: opacity 0.3s ease;
-}
-
-.modal.show {
     display: block;
-    opacity: 1;
 }
 
-.modal-content {
-    background-color: #fefefe;
-    margin: 5% auto;
-    padding: 20px;
-    border: 1px solid #888;
-    width: 80%;
-    animation: slide-down 0.3s ease-out;
-}
-
-@keyframes slide-down {
-    from {
-        transform: translateY(-50px);
-        opacity: 0;
-    }
-    to {
-        transform: translateY(0);
-        opacity: 1;
-    }
-}
-
-.close {
-    color: #aaa;
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
-}
-
-.close:hover,
-.close:focus {
-    color: black;
-    text-decoration: none;
-    cursor: pointer;
-}
-
-/* Adicione isso ao seu arquivo style.css */
-.observacao-input {
-    background-color: #f9f9f9;
-    border: 1px solid #ccc;
-    padding: 5px;
-    border-radius: 4px;
-    width: 100%;
-    box-sizing: border-box;
-}
-
-.observacao-input:disabled {
-    background-color: #e9e9e9;
-    color: #999;
-}
-
-.tooltip {
-    position: relative;
-    display: inline-block;
-    cursor: pointer;
-}
-
-.tooltip .tooltiptext {
-    visibility: hidden;
-    width: 120px;
-    background-color: black;
-    color: #fff;
-    text-align: center;
-    border-radius: 5px;
-    padding: 5px;
-    position: absolute;
-    z-index: 1;
-    bottom: 125%; /* Posiciona o tooltip acima do texto */
-    left: 50%;
-    margin-left: -60px;
-    opacity: 0;
-    transition: opacity 0.3s;
-}
-
-.tooltip:hover .tooltiptext {
-    visibility: visible;
-    opacity: 1;
-}
-
-/* Adicione isso ao seu arquivo style.css */
-.notificacao {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    background-color: #444;
-    color: #fff;
-    padding: 10px;
-    border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.5);
-    z-index: 1000;
-    display: none;
-}
-
-.notificacao.sucesso {
-    background-color: #4CAF50;
-}
-
-.notificacao.erro {
-    background-color: #f44336;
-}
-
-/* Adicione isso ao seu arquivo style.css */
 input:required:invalid {
     border: 2px solid red;
     animation: shake 0.3s;
@@ -722,7 +587,6 @@ input:required:invalid {
     100% { transform: translateX(0); }
 }
 
-/* Adicione isso ao seu arquivo style.css */
 @keyframes fadeIn {
     from {
         opacity: 0;
@@ -738,7 +602,6 @@ input:required:invalid {
     animation: fadeIn 1s ease-out;
 }
 
-/* Adicione isso ao seu arquivo style.css */
 .fade-in {
     animation: fadeIn 0.5s ease-out forwards;
 }
@@ -774,25 +637,25 @@ input:required:invalid {
 .folha-de-ponto .carga-horaria,
 .folha-de-ponto .inicio-intervalo, 
 .folha-de-ponto .fim-intervalo {
-    font-size: 10px; /* Ajuste o tamanho da fonte conforme necessário */
-    word-wrap: break-word; /* Permite que o texto quebre para a linha de baixo, se necessário */
-    white-space: normal; /* Permite que o texto ocupe várias linhas, se necessário */
-    overflow: hidden; /* Garante que o texto não ultrapasse o limite da célula */
-    text-overflow: ellipsis; /* Adiciona reticências se o texto for muito longo */
+    font-size: 10px;
+    word-wrap: break-word;
+    white-space: normal;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 .folha-de-ponto .observacao {
-    font-size: 10px; /* Ajuste o tamanho da fonte conforme necessário */
-    word-wrap: break-word; /* Permite que o texto quebre para a linha de baixo, se necessário */
-    white-space: normal; /* Permite que o texto ocupe várias linhas, se necessário */
-    overflow: hidden; /* Garante que o texto não ultrapasse o limite da célula */
-    text-overflow: ellipsis; /* Adiciona reticências se o texto for muito longo */
+    font-size: 10px;
+    word-wrap: break-word;
+    white-space: normal;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
  .folha-de-ponto td input[type="text"] {
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 400%; /* Garante que o input ocupe toda a altura da célula */
-    line-height: 1.2; /* Ajusta a altura da linha para centralizar verticalmente */
+    height: 400%;
+    line-height: 1.2;
     font-size: 14px;
     font-weight: lighter;
     border: none;
@@ -832,7 +695,6 @@ input:required:invalid {
     white-space: normal;
 }
 
-/* Corrige largura e visualização das colunas da folha de ponto */
 .folha-de-ponto th,
 .folha-de-ponto td {
     border: 1px solid #000;
@@ -894,9 +756,6 @@ input:required:invalid {
         width: 21cm;
         max-width: 21cm;
         min-width: 21cm;
-        /* height: auto; */
-        /* max-height: none; */
-        /* overflow: visible; */
     }
 }
 .folha-de-ponto td {
