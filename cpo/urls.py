@@ -1,13 +1,10 @@
-from django.urls import path
-from .views import registrar_colaborador
+from django.urls import path, include
 from cpo import views
 from django.shortcuts import redirect
 
 urlpatterns = [
-    path('registrar/', registrar_colaborador, name='registrar_colaborador'),
+    path('', lambda request: redirect('login'), name='home'),
     path('salvar-folha-ponto/', views.salvar_folha_ponto, name='salvar_folha_ponto'),
-    path('dashboard/', views.dashboard, name='dashboard'),  # Unificado
+    path('dashboard/', views.dashboard, name='dashboard'),
+    path('', include('django.contrib.auth.urls')),
 ]
-
-def pos_login_redirect(request):
-    return redirect('dashboard')
