@@ -1,5 +1,6 @@
 from django import forms
 from .models import Colaborador
+from django.contrib.auth.forms import AuthenticationForm
 
 class ColaboradorForm(forms.ModelForm):
     class Meta:
@@ -14,3 +15,14 @@ class ColaboradorForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.fields['PIS'].required = False
+
+class CPFLoginForm(AuthenticationForm):
+    username = forms.CharField(
+        label="CPF",
+        widget=forms.TextInput(attrs={
+            'placeholder': '000.000.000-00',
+            'maxlength': '14',
+            'id': 'cpf',  # usado no JS
+            'autocomplete': 'username'
+        })
+    )
