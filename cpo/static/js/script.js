@@ -26,15 +26,15 @@ function criarLinhaDia(dia, mes, ano) {
     const tr = document.createElement('tr');
     tr.innerHTML = `
         <td>${dia.toString().padStart(2, '0')}</td>
-        <td class="entrada"><input type="text" class="hora-input"></td>
-        <td class="inicio-intervalo"><input type="text" class="hora-input"></td>
-        <td class="fim-intervalo"><input type="text" class="hora-input"></td>
-        <td class="saida"><input type="text" class="hora-input"></td>
-        <td class="rdo"><input type="text" maxlength="20"></td>
-        <td class="regime"><input type="text" maxlength="20"></td>
-        <td class="hora-extra"><input type="text" maxlength="20"></td>
-        <td class="observacao"><input type="text" id="observacao-${dia}-${mes}-${ano}" maxlength="20"></td>
-        <td class="assinatura"><input type="text" maxlength="30"></td>
+        <td class="entrada"></td>
+        <td class="inicio-intervalo"></td>
+        <td class="fim-intervalo"></td>
+        <td class="saida"></td>
+        <td class="rdo"></td>
+        <td class="regime"></td>
+        <td class="hora-extra"></td>
+        <td class="observacao" id="observacao-${dia}-${mes}-${ano}"></td>
+        <td class="assinatura"></td>
     `;
     return tr;
 }
