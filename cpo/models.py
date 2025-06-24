@@ -8,13 +8,8 @@ def validar_cpf(cpf):
         raise ValidationError("CPF com formato inválido. Use o formato XXX.XXX.XXX-XX")
 
 class Colaborador(models.Model):
-    TIPO_CHOICES = [
-        ('backoffice', 'Backoffice'),
-        ('operacional', 'Operacional'),
-    ]
     nome = models.CharField(max_length=150)
     email = models.EmailField(blank=True, null=True)
-    tipo = models.CharField(max_length=20, choices=TIPO_CHOICES, default='backoffice')
     cpf = models.CharField(max_length=14, validators=[validar_cpf])
     matricula = models.CharField(max_length=50)
     funcao = models.CharField(max_length=255)
